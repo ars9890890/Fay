@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Подробнее о Fay</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <section class="more-info">
+      <h1>Привет!</h1>
+      <p>Если ты тыкнул "подробнее", значит тебя заинтересовало.</p>
+      <p>Чтобы присоединиться на мой Discord сервер — жми на кнопку ниже!</p>
+      <p>На данный момент на сервере онлайн: <span id="online-count">загрузка...</span></p>
+      <a href="https://discord.gg/v78eEfDB" target="_blank"><button class="cta">Присоединиться</button></a>
+    </section>
+  </main>
+
+  <script>
+    fetch("https://discord.com/api/guilds/1213151826548658196/widget.json")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("online-count").innerText = data.presence_count;
+      })
+      .catch(() => {
+        document.getElementById("online-count").innerText = "ошибка";
+      });
+  </script>
+</body>
+</html>
